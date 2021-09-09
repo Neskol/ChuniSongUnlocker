@@ -45,6 +45,8 @@ namespace ChuniSongUnlocker
                     x.InnerText = "false";
                 Console.WriteLine("Successfully changed attribute in "+dir+", now it is "+x.InnerText);
             }
+            Candidate.Save(dir);
+            Candidate.Save("D:\\Analysis\\"+dir.Split('\\')[dir.Split('\\').Length-2]+".xml");
         }
     }
 }
