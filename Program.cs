@@ -8,7 +8,9 @@ namespace ChuniSongUnlocker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("ChuniSongUnlocker");
+            Console.WriteLine("ChuniSongUnlocker R 1.0 by Neskol");
+            Console.WriteLine("Please input the folder which contains music.xml:");
+            Console.WriteLine("WARNING: For the sake of safety, type ONLY the path to the OPTION folder to prevent unintentional changes (Also works with A000)");
             string dir = Console.ReadLine();
             FileSearcher(dir);
         }
@@ -33,10 +35,10 @@ namespace ChuniSongUnlocker
 
         static void DisableFlagRemover(string dir)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(dir);
+            XmlDocument Candidate = new XmlDocument();
+            Candidate.Load(dir);
             //Display all the book titles.
-            XmlNodeList elemList = doc.GetElementsByTagName("disableFlag");
+            XmlNodeList elemList = Candidate.GetElementsByTagName("disableFlag");
             foreach (XmlNode x in elemList)
             {
                 if (x.InnerText.Equals("true"))
