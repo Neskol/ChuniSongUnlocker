@@ -13,6 +13,7 @@ namespace ChuniSongUnlocker
             Console.WriteLine("WARNING: For the sake of safety, type ONLY the path to the OPTION folder to prevent unintentional changes (Also works with A000)");
             string dir = Console.ReadLine();
             FileSearcher(dir);
+            //CheckValidity(dir);
         }
 
         static void FileSearcher(string dir)
@@ -35,18 +36,42 @@ namespace ChuniSongUnlocker
 
         static void DisableFlagRemover(string dir)
         {
+            //XmlDocument Candidate = new XmlDocument();
+            //Candidate.Load(dir);
+            //XmlNodeList elemList = Candidate.GetElementsByTagName("disableFlag");
+            //foreach (XmlNode x in elemList)
+            //{
+            //    if (x.InnerText.Equals("true"))
+            //        x.InnerText = "false";
+            //    Console.WriteLine("Successfully changed attribute in " + dir + ", now it is " + x.InnerText);
+            //}
+            //Candidate.Save(dir);
+            //Candidate.Save("D:\\Analysis\\" + dir.Split('\\')[dir.Split('\\').Length - 2] + ".xml");
+
             XmlDocument Candidate = new XmlDocument();
             Candidate.Load(dir);
-            //Display all the book titles.
             XmlNodeList elemList = Candidate.GetElementsByTagName("disableFlag");
             foreach (XmlNode x in elemList)
             {
                 if (x.InnerText.Equals("true"))
-                    x.InnerText = "false";
-                Console.WriteLine("Successfully changed attribute in "+dir+", now it is "+x.InnerText);
+                    Console.WriteLine("In " + dir + ", now it is " + x.InnerText + ", test Failed!");
             }
             Candidate.Save(dir);
-            Candidate.Save("D:\\Analysis\\"+dir.Split('\\')[dir.Split('\\').Length-2]+".xml");
+            Candidate.Save("D:\\Analysis\\" + dir.Split('\\')[dir.Split('\\').Length - 2] + ".xml");
+        }
+
+        static void CheckValidity(string dir)
+        {
+            XmlDocument Candidate = new XmlDocument();
+            Candidate.Load(dir);
+            XmlNodeList elemList = Candidate.GetElementsByTagName("disableFlag");
+            foreach (XmlNode x in elemList)
+            {
+                if (x.InnerText.Equals("false"))
+                Console.WriteLine("In " + dir + ", now it is " + x.InnerText+", test Failed!");
+            }
+            Candidate.Save(dir);
+            Candidate.Save("D:\\Analysis\\" + dir.Split('\\')[dir.Split('\\').Length - 2] + ".xml");
         }
     }
 }
